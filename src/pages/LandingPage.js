@@ -17,6 +17,7 @@ class LandingPage extends React.Component {
         this.state = {
             'url' :'',
             'room':'',
+            'room_id':'',
         };
     }
 
@@ -39,6 +40,21 @@ class LandingPage extends React.Component {
                         <Button onClick={() => {
                             console.log(this.state.url);
                             this.setState({'room': (<PartyRoom url={this.state.url}/>)});
+                        }
+                        }>GO!</Button>
+                    </Row>
+                    <Row className={"justify-content-md-center"}>
+                        <Form>
+                            <Form.Group controlId="landingForm.ControlInput1">
+                                <Form.Label>Room ID</Form.Label>
+                                <Form.Control onChange={(evt)=>this.state.room_id = evt.target.value}  placeholder="Room Id" />
+                            </Form.Group>
+                        </Form>
+                    </Row>
+                    <Row className={"justify-content-md-center"}>
+                        <Button onClick={() => {
+                            console.log(this.state.url);
+                            this.setState({'room': (<PartyRoom room_id={this.state.room_id} is_join={true}/>)});
                         }
                         }>GO!</Button>
                     </Row>

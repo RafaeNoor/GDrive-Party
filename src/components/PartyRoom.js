@@ -1,9 +1,5 @@
 import React from "react";
-import {LinkContainer} from 'react-router-bootstrap';
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Form from 'react-bootstrap/Form';
-import Button from "react-bootstrap/cjs/Button";
+
 import Container from "react-bootstrap/cjs/Container";
 import Row from "react-bootstrap/cjs/Row";
 import Col from "react-bootstrap/cjs/Col";
@@ -22,19 +18,36 @@ class PartyRoom extends React.Component {
             'url': props.url,
             'database': new DatabaseBackend(),
             'ref': "",
+            'is_join': props.is_join || false,
         };
+
+        console.log(`IS JOIN ${this.state.is_join}`);
 
 
     }
     componentDidMount() {
-        this.state.database.createRoom({"url":this.state.url,"title":this.state.title,
-        "mode":"pause","current_time":"0.000"}).then(ref => {
-            this.state.room_id = ref.id;
-            console.log(ref.id);
-            ref.onSnapshot(doc => {
-                console.log("Current data: ", doc.data());
+        if(!this.state.is_join) {
+            this.state.database.createRoom({
+                "url": this.state.url, "title": this.state.title,
+                "mode": "pause", "time": 0.000
+            }).then(ref => {
+                this.state.room_id = ref.id;
+                console.log(ref.id);
+                ref.onSnapshot(doc => {
+                    console.log("Current data: ", doc.data());
+                })
+                this.setState({'room_id':ref.id});
             })
-        })
+        } else {
+            console.log('fetching room info')
+            this.state.database.getRef(this.state.room_id).then(ref => {
+                this.state.room_id = ref.id;
+                ref.get().then(doc=>{
+                    console.log(doc.data());
+                    this.setState({'room_id':ref.id, url: doc.data['url']});
+                })
+            })
+        }
 
     }
 
@@ -50,10 +63,10 @@ class PartyRoom extends React.Component {
                     </Row>
                     <Row >
                         <Col md={'auto'}>
-                            <VideoPlayer url={this.state.url} />
+                            <VideoPlayer url={this.state.url} database={this.state.database} is_join={this.state.is_join}/>
                         </Col>
                         <Col md={'auto'}>
-                            <ChatRoom/>
+                            <ChatRoom database={this.state.database}/>
                         </Col>
                     </Row>
                 </Container>

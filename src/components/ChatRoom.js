@@ -58,6 +58,7 @@ class ChatRoom extends React.Component {
         this.state = {
             'chat': messages,
             'cur_msg':"",
+            "database": props.database,
         };
         this.chatRef = React.createRef();
         this.renderAllMessages = this.renderAllMessages.bind(this);
