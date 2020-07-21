@@ -19,4 +19,5 @@ var database = firebase.firestore();
 
 module.exports = {
     database: database,
+    firebase: firebase,
 }

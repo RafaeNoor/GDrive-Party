@@ -1,6 +1,7 @@
 
 const firebase_obj = require('../FirebaseConfig');
 
+
 class DatabaseBackend {
     constructor() {
         this.state = {'ref':''};
@@ -9,6 +10,7 @@ class DatabaseBackend {
         this.togglePlay = this.togglePlay.bind(this);
         this.setSeek = this.setSeek.bind(this);
         this.getRef = this.getRef.bind(this);
+        this.addChat = this.addChat.bind(this);
     }
 
     async createRoom(room_info){
@@ -35,6 +37,10 @@ class DatabaseBackend {
     async setSeek(time){
         await this.state.ref.update({"time":time});
         console.log("Updated")
+    }
+
+    async addChat(msg){
+        await this.state.ref.update({"chats":firebase_obj.firebase.firestore.FieldValue.arrayUnion(msg)});
     }
 
 }

@@ -9,6 +9,7 @@ import Container from "react-bootstrap/cjs/Container";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 class VideoPlayer extends React.Component {
     constructor(props) {
         console.log("VIDEOOOOO")
@@ -34,7 +35,7 @@ class VideoPlayer extends React.Component {
             "database": props.database,
             'url': url ,
             'is_join': props.is_join || false,
-            'playing':false,
+            'playing':true,
         };
 
         console.log(`is_join ${this.state.is_join}`)
@@ -46,7 +47,7 @@ class VideoPlayer extends React.Component {
 
             });
 
-        },1000)
+        },2000);
 
 
     }
@@ -69,17 +70,22 @@ class VideoPlayer extends React.Component {
     onPlay(){
         //console.log(this.state.database)
         console.log("User has pressed play...");
-        this.state.database.togglePlay("play");
+        if(!this.state.is_join) {
+            this.state.database.togglePlay("play");
+        }
     }
 
     onPause(){
         console.log("User has paused the video")
         //console.log(this.state.database)
-        this.state.database.togglePlay("pause");
+        if(!this.state.is_join) {
+            this.state.database.togglePlay("pause");
+        }
     }
 
-    onSeek(sec){
-        console.log(`User has seeked to ${sec}`);
+    onSeek(){
+        console.log('onSeek')
+        ///console.log(`User has seeked to ${sec}`);
         //this.state.database.setSeek(sec);
     }
 
@@ -89,9 +95,17 @@ class VideoPlayer extends React.Component {
     }
 
     onProgress(dur){
+        //if(Math.abs(this.state.duration - dur['playedSeconds']) >= 5.0) {
         this.state.duration = dur['playedSeconds'];
+
+        if(!this.state.is_join) {
+            this.state.database.setSeek(dur['playedSeconds']);
+        }
+
+        //}
         console.log(this.state.duration)
-        this.state.database.setSeek(dur['playedSeconds']);
+
+
     }
 
 
@@ -104,7 +118,7 @@ class VideoPlayer extends React.Component {
                     <ReactPlayer
                         ref={this.ref}
                         url={this.state.url}
-                        controls={true}
+                        controls={!this.state.is_join} // Only host can control
                         light={false}
                         onPlay={this.onPlay}
                         onPause={this.onPause}
@@ -114,7 +128,6 @@ class VideoPlayer extends React.Component {
                         onProgress={this.onProgress}
                         playing={this.state.playing}
                     />
-                    <Button onClick = {()=> this.ref.current.seekTo(5,'seconds')}>FIVE</Button>
                 </Container>
             </div>
         );

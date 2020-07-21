@@ -12,42 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import VideoPlayer from "./VideoPlayer";
 
 let messages = [
-    {
-        "from":"Momina Nofal",
-        "text": "Hahaahahaha Rafae you are so funny! Literally the best wow."
-    },
-    {
-        "from":"Rafae Noor",
-        "text": "Thanks Momina I know I'm so cool."
-    },
-    {
-        "from":"Momina Nofal",
-        "text": "Yes the coolest!"
-    },
-    {
-        "from":"Momina Nofal",
-        "text": "Hahaahahaha Rafae you are so funny! Literally the best wow."
-    },
-    {
-        "from":"Rafae Noor",
-        "text": "Thanks Momina I know I'm so cool."
-    },
-    {
-        "from":"Momina Nofal",
-        "text": "Yes the coolest!"
-    },
-    {
-        "from":"Momina Nofal",
-        "text": "Hahaahahaha Rafae you are so funny! Literally the best wow."
-    },
-    {
-        "from":"Rafae Noor",
-        "text": "Thanks Momina I know I'm so cool."
-    },
-    {
-        "from":"Momina Nofal",
-        "text": "Yes the coolest!"
-    },
+
 
 
 ]
@@ -59,10 +24,19 @@ class ChatRoom extends React.Component {
             'chat': messages,
             'cur_msg':"",
             "database": props.database,
+            'name': props.name
         };
         this.chatRef = React.createRef();
         this.renderAllMessages = this.renderAllMessages.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
+
+        setInterval(()=>{
+            this.state.database.state.ref.onSnapshot(doc => {
+                let data = doc.data();
+                this.setState({"chat":data['chats']});
+            })
+
+        },2000)
     }
 
     displayMessage(msg,isLast){
@@ -118,7 +92,9 @@ class ChatRoom extends React.Component {
     scrollToBottom = () => {
         console.log("Scroll to bottom invoked")
 
-        this.chatRef.current.scrollIntoView({ behavior: "smooth" })
+        if(this.state.chat != [] && this.chatRef.current != null) {
+            this.chatRef.current.scrollIntoView({behavior: "smooth"})
+        }
     }
 
     render() {
@@ -135,9 +111,10 @@ class ChatRoom extends React.Component {
                             </Form.Group>
                         </Form>
                     <Button onClick={()=>{
-                        let msgs = this.state.chat;
-                        msgs.push({"from":"Rafae","text":this.state.cur_msg});
-                        this.setState({"chat":msgs});
+                        //let msgs = this.state.chat;
+                        //msgs.push({"from":this.state.name,"text":this.state.cur_msg});
+                        this.state.database.addChat({"from":this.state.name,"text":this.state.cur_msg});
+                        //this.setState({"chat":msgs});
                     }}>Send</Button>
 
                 </Container>

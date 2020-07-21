@@ -15,6 +15,9 @@ import Footer from "./components/Footer";
 import VideoPlayer from "./components/VideoPlayer";
 import LandingPage from "./pages/LandingPage";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 function App() {
     return (
         <Router>
@@ -31,7 +34,6 @@ function App() {
                         </Route>
                     </Switch>
                 </Container>
-                <Footer/>
             </div>
         </Router>
     );

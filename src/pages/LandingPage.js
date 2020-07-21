@@ -18,28 +18,40 @@ class LandingPage extends React.Component {
             'url' :'',
             'room':'',
             'room_id':'',
+            'name': 'Anonymous',
+            'room_set': false,
         };
     }
 
     render() {
-        return(
-            <div>
-                <Container fluid>
+
+        let pre_room = "";
+        if(!this.state.room_set) {
+            pre_room = (
+                <div>
+
                     <Row className={"justify-content-md-center"}>
                         <h1>GDrive Party</h1>
                     </Row>
                     <Row className={"justify-content-md-center"}>
                         <Form>
                             <Form.Group controlId="landingForm.ControlInput1">
+                                <Form.Label>Display Name</Form.Label>
+                                <Form.Control onChange={(evt) => this.state.name = evt.target.value}
+                                              placeholder="Anonymous"/>
+                            </Form.Group>
+                            <Form.Group controlId="landingForm.ControlInput1">
                                 <Form.Label>Google Drive Address</Form.Label>
-                                <Form.Control onChange={(evt)=>this.state.url = evt.target.value}  placeholder="Google Drive" />
+                                <Form.Control onChange={(evt) => this.state.url = evt.target.value}
+                                              placeholder="Video URL"/>
                             </Form.Group>
                         </Form>
                     </Row>
                     <Row className={"justify-content-md-center"}>
                         <Button onClick={() => {
                             console.log(this.state.url);
-                            this.setState({'room': (<PartyRoom url={this.state.url}/>)});
+                            this.setState({'room': (<PartyRoom url={this.state.url} name={this.state.name}/>),
+                            "room_set":true});
                         }
                         }>GO!</Button>
                     </Row>
@@ -47,17 +59,27 @@ class LandingPage extends React.Component {
                         <Form>
                             <Form.Group controlId="landingForm.ControlInput1">
                                 <Form.Label>Room ID</Form.Label>
-                                <Form.Control onChange={(evt)=>this.state.room_id = evt.target.value}  placeholder="Room Id" />
+                                <Form.Control onChange={(evt) => this.state.room_id = evt.target.value}
+                                              placeholder="Room Id"/>
                             </Form.Group>
                         </Form>
                     </Row>
                     <Row className={"justify-content-md-center"}>
                         <Button onClick={() => {
                             console.log(this.state.url);
-                            this.setState({'room': (<PartyRoom room_id={this.state.room_id} is_join={true}/>)});
+                            this.setState({"room_set":true,'room': (<PartyRoom name={this.state.name} room_id={this.state.room_id} is_join={true}/>)});
                         }
                         }>GO!</Button>
                     </Row>
+                </div>
+
+            );
+        }
+        return(
+            <div>
+                <Container fluid>
+
+                    {pre_room}
                     <Row className={"justify-content-md-center"}>
                         {this.state.room}
                     </Row>

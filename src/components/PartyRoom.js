@@ -19,6 +19,7 @@ class PartyRoom extends React.Component {
             'database': new DatabaseBackend(),
             'ref': "",
             'is_join': props.is_join || false,
+            'name': props.name,
         };
 
         console.log(`IS JOIN ${this.state.is_join}`);
@@ -29,7 +30,7 @@ class PartyRoom extends React.Component {
         if(!this.state.is_join) {
             this.state.database.createRoom({
                 "url": this.state.url, "title": this.state.title,
-                "mode": "pause", "time": 0.000
+                "mode": "pause", "time": 0.000,"chats":[{"from":"GDrive-Party!","text":"Welcome to GDrive Party!"}],
             }).then(ref => {
                 this.state.room_id = ref.id;
                 console.log(ref.id);
@@ -66,7 +67,7 @@ class PartyRoom extends React.Component {
                             <VideoPlayer url={this.state.url} database={this.state.database} is_join={this.state.is_join}/>
                         </Col>
                         <Col md={'auto'}>
-                            <ChatRoom database={this.state.database}/>
+                            <ChatRoom name={this.state.name} database={this.state.database}/>
                         </Col>
                     </Row>
                 </Container>
