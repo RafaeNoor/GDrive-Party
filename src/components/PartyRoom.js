@@ -11,6 +11,7 @@ import Col from "react-bootstrap/cjs/Col";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VideoPlayer from "./VideoPlayer";
 import ChatRoom from "./ChatRoom";
+import DatabaseBackend from "./DatabaseBackend";
 
 class PartyRoom extends React.Component {
     constructor(props) {
@@ -19,8 +20,22 @@ class PartyRoom extends React.Component {
             'room_id': props.room_id || "NO ROOM ID PROVIDED",
             'title': props.title || "GDrive Party!",
             'url': props.url,
-
+            'database': new DatabaseBackend(),
+            'ref': "",
         };
+
+
+    }
+    componentDidMount() {
+        this.state.database.createRoom({"url":this.state.url,"title":this.state.title,
+        "mode":"pause","current_time":"0.000"}).then(ref => {
+            this.state.room_id = ref.id;
+            console.log(ref.id);
+            ref.onSnapshot(doc => {
+                console.log("Current data: ", doc.data());
+            })
+        })
+
     }
 
     render() {
@@ -35,7 +50,7 @@ class PartyRoom extends React.Component {
                     </Row>
                     <Row >
                         <Col md={'auto'}>
-                            <VideoPlayer url={this.state.url}/>
+                            <VideoPlayer url={this.state.url} />
                         </Col>
                         <Col md={'auto'}>
                             <ChatRoom/>
