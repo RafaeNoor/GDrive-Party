@@ -15,7 +15,7 @@ class Footer extends React.Component {
     render() {
         return (
             <div >
-                <Navbar collapseOnSelect fixed={"bottom"} expand="lg" bg="light" variant="light">
+                <Navbar collapseOnSelect fixed={"sticky"} expand="lg" bg="light" variant="light">
                     <Navbar.Text>Footer Text</Navbar.Text>
                 </Navbar>
 

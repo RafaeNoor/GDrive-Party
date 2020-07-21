@@ -15,14 +15,23 @@ class VideoPlayer extends React.Component {
         this.onProgress= this.onProgress.bind(this);
         this.onPause= this.onPause.bind(this);
 
+        let url = "";
+        if (props.url == ""){
+            url ='https://drive.google.com/uc?export=download&id=1ukI_1oNyH6snfFZfNztbWUA1hdNpQjn4';
+        } else {
+            url = props.url;
+        }
+
+        console.log(url);
+
         this.ref = React.createRef();
         this.state = {
             'duration': 0.0,
-            'url': props.url ||'https://drive.google.com/uc?export=download&id=1ukI_1oNyH6snfFZfNztbWUA1hdNpQjn4',
+            'url': url ,
 
             'player': (<ReactPlayer
                                     ref={this.ref}
-                                    url={props.url}
+                                    url={url}
                                     controls={true}
                                     light={false}
                                     onPlay={this.onPlay}
@@ -69,7 +78,6 @@ class VideoPlayer extends React.Component {
             <div>
                 <Container>
                     {this.state.player}
-                    <br/>
                     <Button onClick = {()=> this.ref.current.seekTo(5,'seconds')}>FIVE</Button>
                 </Container>
             </div>

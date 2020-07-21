@@ -6,9 +6,10 @@ import Button from "react-bootstrap/cjs/Button";
 import Container from "react-bootstrap/cjs/Container";
 import Row from "react-bootstrap/cjs/Row";
 import Form from "react-bootstrap/cjs/Form";
-import VideoPlayer from "../components/VideoPlayer";
+import PartyRoom from "../components/PartyRoom";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class LandingPage extends React.Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class LandingPage extends React.Component {
                     <Row className={"justify-content-md-center"}>
                         <Button onClick={() => {
                             console.log(this.state.url);
-                            this.setState({'room': (<VideoPlayer url={this.state.url}/>)});
+                            this.setState({'room': (<PartyRoom url={this.state.url}/>)});
                         }
                         }>GO!</Button>
                     </Row>
