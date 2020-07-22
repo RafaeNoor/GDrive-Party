@@ -18,5 +18,4 @@ In the root of this directory run
 
   
 A deployed version can be found on:
-
-[https://gdrive-party.web.app](www.google.com)
+https://gdrive-party.web.app
