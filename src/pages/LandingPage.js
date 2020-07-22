@@ -5,8 +5,10 @@ import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/cjs/Button";
 import Container from "react-bootstrap/cjs/Container";
 import Row from "react-bootstrap/cjs/Row";
+import Col from "react-bootstrap/cjs/Col";
 import Form from "react-bootstrap/cjs/Form";
 import PartyRoom from "../components/PartyRoom";
+import Card from "react-bootstrap/cjs/Card";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -41,14 +43,14 @@ class LandingPage extends React.Component {
                                               placeholder="Anonymous"/>
                             </Form.Group>
                             <Form.Group controlId="landingForm.ControlInput1">
-                                <Form.Label>Google Drive Address</Form.Label>
+                                <Form.Label>Video Address</Form.Label>
                                 <Form.Control onChange={(evt) => this.state.url = evt.target.value}
                                               placeholder="Video URL"/>
                             </Form.Group>
                         </Form>
                     </Row>
                     <Row className={"justify-content-md-center"}>
-                        <Button onClick={() => {
+                        <Button variant={"dark"} onClick={() => {
                             console.log(this.state.url);
                             this.setState({'room': (<PartyRoom url={this.state.url} name={this.state.name}/>),
                             "room_set":true});
@@ -65,12 +67,31 @@ class LandingPage extends React.Component {
                         </Form>
                     </Row>
                     <Row className={"justify-content-md-center"}>
-                        <Button onClick={() => {
+                        <Button variant={"dark"} onClick={() => {
                             console.log(this.state.url);
                             this.setState({"room_set":true,'room': (<PartyRoom name={this.state.name} room_id={this.state.room_id} is_join={true}/>)});
                         }
                         }>GO!</Button>
                     </Row>
+                    <br/>
+                    <Row className={"justify-content-md-center"}>
+                        <Col md={"auto"}>
+                        <Card bg={"dark"} text={"light"} className="text-center" style={{ width: '55rem' }}>
+                            <Card.Header>Notice</Card.Header>
+                            <Card.Text >
+                                <i>
+                            If you're using a Google Drive Link, Please ensure that you're  using an Editable shareable link.
+                            The link can not be used directly, you would have to format the url as follows:
+                            <b>https://drive.google.com/file/d/1cUhj0mYvf5mTPOaXsDlrdrESSNolqiVP/view?usp=sharing</b><br/>
+                            becomes<br/>
+                                    <b>https://drive.google.com/uc?export=download&id=1cUhj0mYvf5mTPOaXsDlrdrESSNolqiVP</b>
+                                </i>
+                            </Card.Text>
+                            <Card.Footer/>
+                        </Card>
+                        </Col>
+                    </Row>
+
                 </div>
 
             );

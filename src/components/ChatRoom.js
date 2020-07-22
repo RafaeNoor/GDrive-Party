@@ -107,15 +107,17 @@ class ChatRoom extends React.Component {
                                 <Form.Control as={'textarea'} rows={'2'}
                                               placeHolder={'Enter Text to send to chat'}
                                               onChange={(evt)=>this.state.cur_msg = evt.target.value}
+                                              onKeyDown={(evt)=>{
+                                                  if(evt.key == "Enter" && this.state.cur_msg != "" && this.state.cur_msg !="\n"){
+                                                      this.state.database.addChat({"from":this.state.name,"text":this.state.cur_msg});
+                                                      evt.target.value = "";
+                                                  }
+                                              }}
+
                                 />
                             </Form.Group>
                         </Form>
-                    <Button onClick={()=>{
-                        //let msgs = this.state.chat;
-                        //msgs.push({"from":this.state.name,"text":this.state.cur_msg});
-                        this.state.database.addChat({"from":this.state.name,"text":this.state.cur_msg});
-                        //this.setState({"chat":msgs});
-                    }}>Send</Button>
+
 
                 </Container>
 
