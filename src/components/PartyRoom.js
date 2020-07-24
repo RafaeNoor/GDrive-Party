@@ -31,7 +31,8 @@ class PartyRoom extends React.Component {
         if(!this.state.is_join) {
             this.state.database.createRoom({
                 "url": this.state.url, "title": this.state.title,
-                "mode": "pause", "time": 0.000,"chats":[{"from":"GDrive-Party!","text":"Welcome to GDrive Party!"}],
+                "mode": "pause", "time": 0.000,"chats":[{"from":"GDrive-Party!","text":"Welcome to GDrive Party!","title":
+                this.state.title}],
             }).then(ref => {
                 this.state.room_id = ref.id;
                 console.log(ref.id);
@@ -46,7 +47,7 @@ class PartyRoom extends React.Component {
                 this.state.room_id = ref.id;
                 ref.get().then(doc=>{
                     console.log(doc.data());
-                    this.setState({'room_id':ref.id, url: doc.data['url']});
+                    this.setState({'room_id':ref.id, url: doc.data['url'],title:doc.data['title']});
                 })
             })
         }

@@ -43,7 +43,9 @@ class VideoPlayer extends React.Component {
         setTimeout(()=>{
             this.state.database.state.ref.onSnapshot(doc=>{
                 console.log(doc.data());
-                this.setState({'url': doc.data()['url'], 'playing': doc.data()['mode'] == 'play'})
+                if(doc.data() != undefined) {
+                    this.setState({'url': doc.data()['url'], 'playing': doc.data()['mode'] == 'play'})
+                }
 
             });
 

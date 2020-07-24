@@ -22,6 +22,7 @@ class LandingPage extends React.Component {
             'room_id':'',
             'name': 'Anonymous',
             'room_set': false,
+            'title': 'GDrive-Party!'
         };
     }
 
@@ -36,11 +37,16 @@ class LandingPage extends React.Component {
                         <h1>GDrive Party</h1>
                     </Row>
                     <Row className={"justify-content-md-center"}>
-                        <Form>
+                        <Form >
                             <Form.Group controlId="landingForm.ControlInput1">
                                 <Form.Label>Display Name</Form.Label>
                                 <Form.Control onChange={(evt) => this.state.name = evt.target.value}
                                               placeholder="Anonymous"/>
+                            </Form.Group>
+                            <Form.Group controlId="landingForm.ControlInput2">
+                                <Form.Label>Party Title</Form.Label>
+                                <Form.Control onChange={(evt) => this.state.title = evt.target.value}
+                                              placeholder="GDrive-Party!"/>
                             </Form.Group>
                             <Form.Group controlId="landingForm.ControlInput1">
                                 <Form.Label>Video Address</Form.Label>
@@ -52,10 +58,10 @@ class LandingPage extends React.Component {
                     <Row className={"justify-content-md-center"}>
                         <Button variant={"dark"} onClick={() => {
                             console.log(this.state.url);
-                            this.setState({'room': (<PartyRoom url={this.state.url} name={this.state.name}/>),
+                            this.setState({'room': (<PartyRoom url={this.state.url} title={this.state.title} name={this.state.name}/>),
                             "room_set":true});
                         }
-                        }>GO!</Button>
+                        }>Start Party</Button>
                     </Row>
                     <Row className={"justify-content-md-center"}>
                         <Form>
@@ -67,11 +73,11 @@ class LandingPage extends React.Component {
                         </Form>
                     </Row>
                     <Row className={"justify-content-md-center"}>
-                        <Button variant={"dark"} onClick={() => {
+                        <Button variant={"dark"}  onClick={() => {
                             console.log(this.state.url);
                             this.setState({"room_set":true,'room': (<PartyRoom name={this.state.name} room_id={this.state.room_id} is_join={true}/>)});
                         }
-                        }>GO!</Button>
+                        }>Join Party</Button>
                     </Row>
                     <br/>
                     <Row className={"justify-content-md-center"}>
@@ -98,7 +104,7 @@ class LandingPage extends React.Component {
         }
         return(
             <div>
-                <Container fluid>
+                <Container fluid={"md"}>
 
                     {pre_room}
                     <Row className={"justify-content-md-center"}>

@@ -31,8 +31,8 @@ let how_tos= [
         "question": "How can I use GDrive-Party?",
         "answer": "On the main page, you would enter a Display name which will be shown in your party chat. Then you\ " +
             "you would copy the video URL from the previously mentioned support platforms and paste that into the Video Address \
-            textbox. Clicking the 'Go' button below that would create a new lobby where you would be shown a 'room_id'. Your \ \
-            friends would use that room_id and enter that into the Room ID textbox on the main page and press Go below that. They would \ \
+            textbox. Clicking the 'Start Party' button below that would create a new lobby where you would be shown a 'room_id'. Your \ \
+            friends would use that room_id and enter that into the Room ID textbox on the main page and press 'Join Party' below that. They would \ \
             then be added into your lobby. From their, only the Host can control video playback such as Play/Pause and seeking."
     }
 
@@ -50,9 +50,9 @@ class HowToUse extends React.Component {
 
         pairs.forEach( (pair,idx) => {
             cards.push(
-                <Card style={{ width: '50rem' }} bg={"dark"} text={"light"}>
+                <Card style={{ width: '50rem' }} bg={"info"} text={"light"}>
                     <Card.Header>
-                        <Accordion.Toggle as={Button} variant="light" eventKey={idx.toString()}>
+                        <Accordion.Toggle as={Button} variant="dark" eventKey={idx.toString()}>
                             {pair.question}
                         </Accordion.Toggle>
                     </Card.Header>
@@ -78,8 +78,6 @@ class HowToUse extends React.Component {
                     <br/>
                     <Row className={"justify-content-md-center"}>
                         {this.build_accord(this.state.pairs)}
-
-
                     </Row>
                 </Container>
             </div>
