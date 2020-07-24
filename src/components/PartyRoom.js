@@ -3,6 +3,7 @@ import React from "react";
 import Container from "react-bootstrap/cjs/Container";
 import Row from "react-bootstrap/cjs/Row";
 import Col from "react-bootstrap/cjs/Col";
+import Button from "react-bootstrap/cjs/Button";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VideoPlayer from "./VideoPlayer";
@@ -53,6 +54,13 @@ class PartyRoom extends React.Component {
     }
 
     render() {
+
+        let delete_room  = "";
+
+        if(!this.state.is_join){
+            delete_room = (<Button onClick={()=>this.state.database.deleteRoom()}>Delete Room</Button>);
+        }
+
         return(
             <div>
                 <Container fluid>
@@ -69,6 +77,9 @@ class PartyRoom extends React.Component {
                         <Col md={'auto'}>
                             <ChatRoom name={this.state.name} database={this.state.database}/>
                         </Col>
+                    </Row>
+                    <Row className={"justify-content-md-center"}>
+                        {delete_room}
                     </Row>
                 </Container>
 

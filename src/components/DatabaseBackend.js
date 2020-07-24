@@ -11,6 +11,12 @@ class DatabaseBackend {
         this.setSeek = this.setSeek.bind(this);
         this.getRef = this.getRef.bind(this);
         this.addChat = this.addChat.bind(this);
+        this.deleteRoom = this.deleteRoom.bind(this);
+    }
+
+    async deleteRoom(){
+        this.state.ref.delete();
+
     }
 
     async createRoom(room_info){
