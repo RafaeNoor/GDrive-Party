@@ -39,7 +39,7 @@ class ChatRoom extends React.Component {
         if(!isLast) {
             return (
                 <Container>
-                    <Card bg={'info'} text={'white'}>
+                    <Card bg={'info'} style={{ width: '20rem' }} text={'white'}>
                         <Card.Header>{msg.from}</Card.Header>
                         <Card.Body>{msg.text}</Card.Body>
                     </Card>
@@ -51,7 +51,7 @@ class ChatRoom extends React.Component {
             return (
                 <div ref={this.chatRef}>
                 <Container>
-                    <Card bg={'info'} text={'white'}>
+                    <Card bg={'info'} style={{ width: '20rem' }} text={'white'}>
                         <Card.Header>{msg.from}</Card.Header>
                         <Card.Body>{msg.text}</Card.Body>
                     </Card>
@@ -96,7 +96,7 @@ class ChatRoom extends React.Component {
     render() {
         return(
             <div>
-                <Container>
+                <Container fluid>
                     <div style={{"overflow-y":"scroll","height": "400px"}} >{this.renderAllMessages()}</div>
                         <Form>
                             <Form.Group>
@@ -105,7 +105,7 @@ class ChatRoom extends React.Component {
                                               onChange={(evt)=>this.state.cur_msg = evt.target.value}
                                               onKeyDown={(evt)=>{
                                                   if(evt.key == "Enter" && this.state.cur_msg != "" && this.state.cur_msg !="\n"){
-                                                      this.state.database.addChat({"from":this.state.name,"text":this.state.cur_msg});
+                                                      this.state.database.addChat({"from":this.state.name,"text":this.state.cur_msg,"time":new Date()});
                                                       evt.target.value = "";
                                                   }
                                               }}

@@ -59,7 +59,7 @@ class PartyRoom extends React.Component {
         let delete_room  = "";
 
         if(!this.state.is_join){
-            delete_room = (<Button onClick={()=>this.state.database.deleteRoom()}>Delete Room</Button>);
+            delete_room = (<Button size={"lg"} variant={"info"} onClick={()=>this.state.database.deleteRoom()}>Delete Room</Button>);
         }
 
         return(
@@ -79,7 +79,7 @@ class PartyRoom extends React.Component {
                             <ChatRoom name={this.state.name} database={this.state.database}/>
                         </Col>
                     </Row>
-                    <Row className={"justify-content-md-center"}>
+                    <Row>
                         {delete_room}
                     </Row>
                 </Container>

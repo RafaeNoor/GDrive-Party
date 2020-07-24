@@ -56,7 +56,7 @@ class LandingPage extends React.Component {
                         </Form>
                     </Row>
                     <Row className={"justify-content-md-center"}>
-                        <Button variant={"dark"} onClick={() => {
+                        <Button variant={"info"} onClick={() => {
                             console.log(this.state.url);
                             this.setState({'room': (<PartyRoom url={this.state.url} title={this.state.title} name={this.state.name}/>),
                             "room_set":true});
@@ -73,7 +73,7 @@ class LandingPage extends React.Component {
                         </Form>
                     </Row>
                     <Row className={"justify-content-md-center"}>
-                        <Button variant={"dark"}  onClick={() => {
+                        <Button variant={"info"}  onClick={() => {
                             console.log(this.state.url);
                             this.setState({"room_set":true,'room': (<PartyRoom name={this.state.name} room_id={this.state.room_id} is_join={true}/>)});
                         }
@@ -82,7 +82,7 @@ class LandingPage extends React.Component {
                     <br/>
                     <Row className={"justify-content-md-center"}>
                         <Col md={"auto"}>
-                        <Card bg={"dark"} text={"light"} className="text-center" style={{ width: '55rem' }}>
+                        <Card bg={"info"} text={"light"} className="text-center" style={{ width: '55rem' }}>
                             <Card.Header>Notice</Card.Header>
                             <Card.Text >
                                 <i>
@@ -97,6 +97,7 @@ class LandingPage extends React.Component {
                         </Card>
                         </Col>
                     </Row>
+                    <br/>
 
                 </div>
 

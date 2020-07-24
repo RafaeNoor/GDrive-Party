@@ -16,7 +16,7 @@ class Header extends React.Component {
     render() {
         return(
             <div>
-                <Navbar bg="dark" variant="dark">
+                <Navbar bg="info" variant="dark">
                     <LinkContainer to={"/"}>
                     <Navbar.Brand >GDrive Party</Navbar.Brand>
                     </LinkContainer>
