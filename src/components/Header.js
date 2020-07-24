@@ -17,14 +17,20 @@ class Header extends React.Component {
         return(
             <div>
                 <Navbar bg="dark" variant="dark">
+                    <LinkContainer to={"/"}>
                     <Navbar.Brand >GDrive Party</Navbar.Brand>
+                    </LinkContainer>
                     <Nav className="mr-auto">
-                        <Nav.Link >About</Nav.Link>
+                        <LinkContainer to={"/about"}>
+                            <Nav.Link >About</Nav.Link>
+                        </LinkContainer>
                     </Nav>
-                    <Form inline>
-                        <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-info">Search</Button>
-                    </Form>
+                    <Nav className="mr-auto">
+                        <LinkContainer to={"/how_to_use"}>
+                            <Nav.Link >How To Use</Nav.Link>
+                        </LinkContainer>
+                    </Nav>
+
                 </Navbar>
 
             </div>

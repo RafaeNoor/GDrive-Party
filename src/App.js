@@ -16,6 +16,7 @@ import VideoPlayer from "./components/VideoPlayer";
 import LandingPage from "./pages/LandingPage";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import HowToUse from "./pages/HowToUse";
 
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
                     <Switch>
                         <Route path={"/about"}>
                             <h1>ABOUT</h1>
+                        </Route>
+                        <Route path={"/how_to_use"}>
+                            <HowToUse/>
                         </Route>
                         <Route path={"/"}>
                             <LandingPage/>
