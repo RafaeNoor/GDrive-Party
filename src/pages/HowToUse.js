@@ -34,6 +34,12 @@ let how_tos= [
             textbox. Clicking the 'Start Party' button below that would create a new lobby where you would be shown a 'room_id'. Your \ \
             friends would use that room_id and enter that into the Room ID textbox on the main page and press 'Join Party' below that. They would \ \
             then be added into your lobby. From their, only the Host can control video playback such as Play/Pause and seeking."
+    },
+    {
+        "question":"What other features does GDrive-Party offer?",
+        "answer": "Once a Room is created, the host has additional controls; They can create a video queue \
+        and as such can use the room to watch multiple videos. These videos can span all the platforms listed \
+        above."
     }
 
 ];

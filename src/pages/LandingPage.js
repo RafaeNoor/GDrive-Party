@@ -32,6 +32,7 @@ class LandingPage extends React.Component {
         if(!this.state.room_set) {
             pre_room = (
                 <div>
+                    <br/>
 
                     <Row className={"justify-content-md-center"}>
                         <h1>GDrive Party!</h1>

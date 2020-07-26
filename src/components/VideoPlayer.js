@@ -142,6 +142,7 @@ class VideoPlayer extends React.Component {
                             //this.setState({"url":vid})
                         }}
                                     database={this.state.database}
+                                    is_join ={this.state.is_join}
                         />
                     </Row>
 

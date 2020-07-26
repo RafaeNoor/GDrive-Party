@@ -13,8 +13,7 @@ class VideoQueue extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "queue": props.list || ["https://www.youtube.com/watch?v=Ajq7PXkfke4",
-            "https://www.youtube.com/watch?v=QZw-rgaQVfI"],
+            "queue": props.list || [],
             "current":0,
             "changeVideo": props.changeVideo,
             "is_join": props.is_join || false,

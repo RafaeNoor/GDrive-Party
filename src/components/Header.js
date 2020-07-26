@@ -21,11 +21,6 @@ class Header extends React.Component {
                     <Navbar.Brand >GDrive Party</Navbar.Brand>
                     </LinkContainer>
                     <Nav className="mr-auto">
-                        <LinkContainer to={"/about"}>
-                            <Nav.Link >About</Nav.Link>
-                        </LinkContainer>
-                    </Nav>
-                    <Nav className="mr-auto">
                         <LinkContainer to={"/how_to_use"}>
                             <Nav.Link >How To Use</Nav.Link>
                         </LinkContainer>

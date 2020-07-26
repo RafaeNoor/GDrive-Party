@@ -92,6 +92,7 @@ class PartyRoom extends React.Component {
         return(
             <div>
                 <Container fluid>
+                    <br/>
                     <Row className={"justify-content-md-center"}>
                         <h1>{this.state.title}</h1>
                     </Row>
