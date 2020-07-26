@@ -53,6 +53,11 @@ class DatabaseBackend {
         await this.state.ref.update({"chats":firebase_obj.firebase.firestore.FieldValue.arrayUnion(msg)});
     }
 
+    async addVideo(vid){
+        await this.state.ref.update({"video_list":firebase_obj.firebase.firestore.FieldValue.arrayUnion(vid)});
+
+    }
+
 }
 
 export default DatabaseBackend;

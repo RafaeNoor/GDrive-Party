@@ -4,6 +4,8 @@ import Container from "react-bootstrap/cjs/Container";
 import Row from "react-bootstrap/cjs/Row";
 import Col from "react-bootstrap/cjs/Col";
 import Button from "react-bootstrap/cjs/Button";
+import Form from "react-bootstrap/cjs/Form";
+import InputGroupWithExtras from "react-bootstrap/cjs/InputGroup";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VideoPlayer from "./VideoPlayer";
@@ -21,6 +23,7 @@ class PartyRoom extends React.Component {
             'ref': "",
             'is_join': props.is_join || false,
             'name': props.name,
+            'add_url':'',
         };
 
         console.log(`IS JOIN ${this.state.is_join}`);
@@ -31,8 +34,9 @@ class PartyRoom extends React.Component {
         if(!this.state.is_join) {
             this.state.database.createRoom({
                 "url": this.state.url, "title": this.state.title,
-                "mode": "pause", "time": 0.000,"chats":[{"from":"GDrive-Party!","text":"Welcome to GDrive Party!","title":
-                this.state.title}],
+                "mode": "pause", "time": 0.000,
+                "chats":[{"from":"GDrive-Party!","text":"Welcome to GDrive Party!","title": this.state.title}],
+                "video_list": [this.state.url],
             }).then(ref => {
                 this.state.room_id = ref.id;
                 console.log(ref.id);
@@ -56,10 +60,33 @@ class PartyRoom extends React.Component {
 
     render() {
 
-        let delete_room  = "";
+        let room_controls  = "";
 
         if(!this.state.is_join){
-            delete_room = (<Button size={"lg"} variant={"info"} onClick={()=>this.state.database.deleteRoom()}>Delete Room</Button>);
+            room_controls = (
+                <div>
+                    <Row>
+                        <Col md={"auto"}>
+                        <Button variant={"info"} onClick={()=>this.state.database.deleteRoom()}>Delete Room</Button>
+                        </Col>
+                        <Col md={"auto"}>
+                            <InputGroupWithExtras>
+                                <Form.Control
+                                    onChange ={ evt => {this.state.add_url = evt.target.value}}
+                                    placeholder={"Video URL"}>
+                                </Form.Control>
+                                <InputGroupWithExtras.Append>
+                                    <Button variant={"info"}
+                                            onClick={()=>this.state.database.addVideo(this.state.add_url)}
+                                    >Add Video</Button>
+                                </InputGroupWithExtras.Append>
+                            </InputGroupWithExtras>
+
+                        </Col>
+                    </Row>
+                </div>
+            );
+
         }
 
         return(
@@ -79,9 +106,8 @@ class PartyRoom extends React.Component {
                             <ChatRoom name={this.state.name} database={this.state.database}/>
                         </Col>
                     </Row>
-                    <Row>
-                        {delete_room}
-                    </Row>
+                    <br/>
+                    {room_controls}
                 </Container>
 
             </div>

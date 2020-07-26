@@ -140,7 +140,9 @@ class VideoPlayer extends React.Component {
                         <VideoQueue changeVideo={(vid)=>{
                             this.state.database.setURL(vid);
                             //this.setState({"url":vid})
-                        }}/>
+                        }}
+                                    database={this.state.database}
+                        />
                     </Row>
 
                 </Container>
