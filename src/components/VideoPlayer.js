@@ -6,6 +6,9 @@ import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/cjs/Button";
 import ReactPlayer from "react-player";
 import Container from "react-bootstrap/cjs/Container";
+import Row from "react-bootstrap/cjs/Row";
+import VideoQueue from "./VideoQueue";
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -116,7 +119,8 @@ class VideoPlayer extends React.Component {
         console.log(`Rendering video with url ${this.state.url}`)
         return(
             <div>
-                <Container>
+                <Container fluid>
+                    <Row>
                     <ReactPlayer
                         ref={this.ref}
                         url={this.state.url}
@@ -130,6 +134,15 @@ class VideoPlayer extends React.Component {
                         onProgress={this.onProgress}
                         playing={this.state.playing}
                     />
+                    </Row>
+                    <br/>
+                    <Row>
+                        <VideoQueue changeVideo={(vid)=>{
+                            this.state.database.setURL(vid);
+                            //this.setState({"url":vid})
+                        }}/>
+                    </Row>
+
                 </Container>
             </div>
         );

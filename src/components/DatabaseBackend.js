@@ -45,6 +45,10 @@ class DatabaseBackend {
         console.log("Updated")
     }
 
+    async setURL(url){
+        await this.state.ref.update({"url":url});
+    }
+
     async addChat(msg){
         await this.state.ref.update({"chats":firebase_obj.firebase.firestore.FieldValue.arrayUnion(msg)});
     }
