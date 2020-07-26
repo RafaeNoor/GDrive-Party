@@ -1,9 +1,4 @@
 import React from "react";
-import {LinkContainer} from 'react-router-bootstrap';
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Form from 'react-bootstrap/Form';
-import Button from "react-bootstrap/cjs/Button";
 import Container from "react-bootstrap/cjs/Container";
 import ListGroup from "react-bootstrap/cjs/ListGroup";
 
@@ -39,18 +34,19 @@ class VideoQueue extends React.Component {
         this.state.queue.forEach( (vid,idx) => {
             let item = "";
             if(this.state.current == idx){
-                item = (<ListGroup.Item as={"li"} variant={"info"} disabled={this.state.is_join} onClick={()=>{
+                item = (<ListGroup.Item as={"li"} variant={"info"}  onClick={()=>{
                     if(!this.state.is_join) {
                         this.setState({"current": idx});
                         this.state.changeVideo(vid);
                     }
                 }} >{vid}</ListGroup.Item>);
             } else {
-                item = (<ListGroup.Item as={"li"} variant={"light"} text={"dark"} disabled={this.state.is_join} onClick={()=>{
+                item = (<ListGroup.Item as={"li"} variant={"light"} text={"dark"}  onClick={()=>{
                     if(!this.state.is_join) {
                         this.setState({"current": idx});
                         this.state.changeVideo(vid);
                     }
+
                 }}>{vid}</ListGroup.Item>);
             }
 

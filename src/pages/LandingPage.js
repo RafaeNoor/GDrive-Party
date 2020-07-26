@@ -1,7 +1,4 @@
 import React from "react";
-import {LinkContainer} from 'react-router-bootstrap';
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/cjs/Button";
 import Container from "react-bootstrap/cjs/Container";
 import Row from "react-bootstrap/cjs/Row";
