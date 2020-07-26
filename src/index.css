@@ -7,6 +7,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  font-family: 'Satisfy', cursive;
+  color: #0f6674;
+}
+
+.form_style {
+  color: #0f6674;
+  font-weight: bold;
+
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

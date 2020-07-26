@@ -40,7 +40,7 @@ class ChatRoom extends React.Component {
             return (
                 <Container>
                     <Card bg={'info'} style={{ width: '20rem' }} text={'white'}>
-                        <Card.Header>{msg.from}</Card.Header>
+                        <Card.Header><b>{msg.from}</b></Card.Header>
                         <Card.Body>{msg.text}</Card.Body>
                     </Card>
                     <br/>
@@ -52,7 +52,7 @@ class ChatRoom extends React.Component {
                 <div ref={this.chatRef}>
                 <Container>
                     <Card bg={'info'} style={{ width: '20rem' }} text={'white'}>
-                        <Card.Header>{msg.from}</Card.Header>
+                        <Card.Header><b>{msg.from}</b></Card.Header>
                         <Card.Body>{msg.text}</Card.Body>
                     </Card>
                     <br/>

@@ -95,8 +95,8 @@ class PartyRoom extends React.Component {
                     <Row className={"justify-content-md-center"}>
                         <h1>{this.state.title}</h1>
                     </Row>
-                    <Row className={"justify-content-md-center"}>
-                        <h3>Room-ID: {this.state.room_id}</h3>
+                    <Row >
+                        Room-ID: {this.state.room_id}
                     </Row>
                     <Row >
                         <Col md={'auto'}>

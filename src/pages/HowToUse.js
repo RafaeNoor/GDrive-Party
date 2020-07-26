@@ -52,7 +52,7 @@ class HowToUse extends React.Component {
             cards.push(
                 <Card style={{ width: '50rem' }} bg={"info"} text={"light"}>
                     <Card.Header>
-                        <Accordion.Toggle as={Button} variant="dark" eventKey={idx.toString()}>
+                        <Accordion.Toggle as={Button} variant="outline-light" eventKey={idx.toString()}>
                             {pair.question}
                         </Accordion.Toggle>
                     </Card.Header>

@@ -34,22 +34,22 @@ class LandingPage extends React.Component {
                 <div>
 
                     <Row className={"justify-content-md-center"}>
-                        <h1>GDrive Party</h1>
+                        <h1>GDrive Party!</h1>
                     </Row>
                     <Row className={"justify-content-md-center"}>
                         <Form >
                             <Form.Group controlId="landingForm.ControlInput1">
-                                <Form.Label>Display Name</Form.Label>
+                                <Form.Label className={"form_style"}>Display Name</Form.Label>
                                 <Form.Control onChange={(evt) => this.state.name = evt.target.value}
                                               placeholder="Anonymous"/>
                             </Form.Group>
                             <Form.Group controlId="landingForm.ControlInput2">
-                                <Form.Label>Party Title</Form.Label>
+                                <Form.Label className={"form_style"}>Party Title</Form.Label>
                                 <Form.Control onChange={(evt) => this.state.title = evt.target.value}
                                               placeholder="GDrive-Party!"/>
                             </Form.Group>
                             <Form.Group controlId="landingForm.ControlInput1">
-                                <Form.Label>Video Address</Form.Label>
+                                <Form.Label className={"form_style"}>Video Address</Form.Label>
                                 <Form.Control onChange={(evt) => this.state.url = evt.target.value}
                                               placeholder="Video URL"/>
                             </Form.Group>
@@ -66,7 +66,7 @@ class LandingPage extends React.Component {
                     <Row className={"justify-content-md-center"}>
                         <Form>
                             <Form.Group controlId="landingForm.ControlInput1">
-                                <Form.Label>Room ID</Form.Label>
+                                <Form.Label className={"form_style"}>Room ID</Form.Label>
                                 <Form.Control onChange={(evt) => this.state.room_id = evt.target.value}
                                               placeholder="Room Id"/>
                             </Form.Group>
