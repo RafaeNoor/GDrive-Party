@@ -20,7 +20,7 @@ class VideoPlayer extends React.Component {
 
         let url = "";
         if (props.url == ""){
-            url ='https://drive.google.com/uc?export=download&id=1ukI_1oNyH6snfFZfNztbWUA1hdNpQjn4';
+            url ='https://www.youtube.com/watch?v=QZw-rgaQVfI';
         } else {
             url = props.url;
         }

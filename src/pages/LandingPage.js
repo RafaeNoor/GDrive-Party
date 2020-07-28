@@ -5,8 +5,9 @@ import Row from "react-bootstrap/cjs/Row";
 import Col from "react-bootstrap/cjs/Col";
 import Form from "react-bootstrap/cjs/Form";
 import PartyRoom from "../components/PartyRoom";
-import Card from "react-bootstrap/cjs/Card";
 
+
+import URLFormatter from "../components/URLFormatter";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -19,7 +20,8 @@ class LandingPage extends React.Component {
             'room_id':'',
             'name': 'Anonymous',
             'room_set': false,
-            'title': 'GDrive-Party!'
+            'title': 'GDrive-Party!',
+            'url_formatter': new URLFormatter(),
         };
     }
 
@@ -56,8 +58,8 @@ class LandingPage extends React.Component {
                     <Row className={"justify-content-md-center"}>
                         <Button variant={"info"} onClick={() => {
                             console.log(this.state.url);
-                            this.setState({'room': (<PartyRoom url={this.state.url} title={this.state.title} name={this.state.name}/>),
-                            "room_set":true});
+                            this.setState({'room': (<PartyRoom url={this.state.url_formatter.rewrite_url(this.state.url)} title={this.state.title} name={this.state.name}/>),
+                                "room_set":true});
                         }
                         }>Start Party</Button>
                     </Row>
@@ -78,24 +80,7 @@ class LandingPage extends React.Component {
                         }>Join Party</Button>
                     </Row>
                     <br/>
-                    <Row className={"justify-content-md-center"}>
-                        <Col md={"auto"}>
-                        <Card bg={"info"} text={"light"} className="text-center" style={{ width: '55rem' }}>
-                            <Card.Header>Notice</Card.Header>
-                            <Card.Text >
-                                <i>
-                            If you're using a Google Drive Link, Please ensure that you're  using an Editable shareable link.
-                            The link can not be used directly, you would have to format the url as follows:
-                            <b>https://drive.google.com/file/d/1cUhj0mYvf5mTPOaXsDlrdrESSNolqiVP/view?usp=sharing</b><br/>
-                            becomes<br/>
-                                    <b>https://drive.google.com/uc?export=download&id=1cUhj0mYvf5mTPOaXsDlrdrESSNolqiVP</b>
-                                </i>
-                            </Card.Text>
-                            <Card.Footer/>
-                        </Card>
-                        </Col>
-                    </Row>
-                    <br/>
+
 
                 </div>
 
