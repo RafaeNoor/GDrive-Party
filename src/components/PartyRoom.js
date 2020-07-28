@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import VideoPlayer from "./VideoPlayer";
 import ChatRoom from "./ChatRoom";
 import DatabaseBackend from "./DatabaseBackend";
+import URLFormatter from "./URLFormatter";
 
 class PartyRoom extends React.Component {
     constructor(props) {
@@ -25,6 +26,7 @@ class PartyRoom extends React.Component {
             'name': props.name,
             'add_url':'',
             'play_mode':'pause',
+            'url_formatter': new URLFormatter(),
         };
 
         console.log(`IS JOIN ${this.state.is_join}`);
@@ -92,7 +94,7 @@ class PartyRoom extends React.Component {
                                 </Form.Control>
                                 <InputGroupWithExtras.Append>
                                     <Button variant={"info"}
-                                            onClick={()=>this.state.database.addVideo(this.state.add_url)}
+                                            onClick={()=>this.state.database.addVideo(this.state.url_formatter.rewrite_url(this.state.add_url))}
                                     >Add Video</Button>
                                 </InputGroupWithExtras.Append>
                             </InputGroupWithExtras>
