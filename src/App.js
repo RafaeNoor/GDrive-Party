@@ -17,6 +17,7 @@ import LandingPage from "./pages/LandingPage";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HowToUse from "./pages/HowToUse";
+import Suggestions from "./pages/Suggestions";
 
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
                 <Container fluid>
 
                     <Switch>
+                        <Route path={"/suggestions"}>
+                            <Suggestions/>
+                        </Route>
                         <Route path={"/about"}>
                             <h1>ABOUT</h1>
                         </Route>

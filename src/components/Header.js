@@ -24,6 +24,11 @@ class Header extends React.Component {
                             <Nav.Link >How To Use</Nav.Link>
                         </LinkContainer>
                     </Nav>
+                    <Nav className="mr-auto">
+                        <LinkContainer to={"/suggestions"}>
+                            <Nav.Link >Got Ideas?</Nav.Link>
+                        </LinkContainer>
+                    </Nav>
 
                 </Navbar>
 
