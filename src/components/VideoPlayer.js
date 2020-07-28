@@ -27,6 +27,8 @@ class VideoPlayer extends React.Component {
 
         console.log(url);
 
+
+
         this.ref = React.createRef();
         this.state = {
             'duration': 0.0,
@@ -59,7 +61,7 @@ class VideoPlayer extends React.Component {
             console.log('Initiating join')
             this.state.database.state.ref.onSnapshot(doc => {
                 let data = doc.data();
-                if(Math.abs(data['time'] - this.state.duration) >= 5.0) {
+                if(Math.abs(data['time'] - this.state.duration) >= 4.0) {
                     this.ref.current.seekTo(data['time'], 'seconds');
                 }
             })

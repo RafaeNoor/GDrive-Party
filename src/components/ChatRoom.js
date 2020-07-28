@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/cjs/Container";
 import Card from "react-bootstrap/cjs/Card";
 import Form from 'react-bootstrap/cjs/Form';
+import Dropdown from "react-bootstrap/cjs/Dropdown";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -18,11 +19,14 @@ class ChatRoom extends React.Component {
             'chat': messages,
             'cur_msg':"",
             "database": props.database,
-            'name': props.name
+            'name': props.name,
+            "color":"info",
+            "text_color":"white",
         };
         this.chatRef = React.createRef();
         this.renderAllMessages = this.renderAllMessages.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
+        this.setChatColor = this.setChatColor.bind(this);
 
         setTimeout(()=>{
             this.state.database.state.ref.onSnapshot(doc => {
@@ -39,7 +43,7 @@ class ChatRoom extends React.Component {
         if(!isLast) {
             return (
                 <Container>
-                    <Card bg={'info'} style={{ width: '20rem' }} text={'white'}>
+                    <Card bg={msg.color} style={{ width: '20rem' }} text={msg.text_color}>
                         <Card.Header><b>{msg.from}</b></Card.Header>
                         <Card.Body>{msg.text}</Card.Body>
                     </Card>
@@ -51,7 +55,7 @@ class ChatRoom extends React.Component {
             return (
                 <div ref={this.chatRef}>
                 <Container>
-                    <Card bg={'info'} style={{ width: '20rem' }} text={'white'}>
+                    <Card bg={msg.color} style={{ width: '20rem' }} text={msg.text_color}>
                         <Card.Header><b>{msg.from}</b></Card.Header>
                         <Card.Body>{msg.text}</Card.Body>
                     </Card>
@@ -93,6 +97,10 @@ class ChatRoom extends React.Component {
         }
     }
 
+    setChatColor(color,text_color){
+        this.setState({'color':color,'text_color':text_color});
+    }
+
     render() {
         return(
             <div>
@@ -105,7 +113,8 @@ class ChatRoom extends React.Component {
                                               onChange={(evt)=>this.state.cur_msg = evt.target.value}
                                               onKeyDown={(evt)=>{
                                                   if(evt.key == "Enter" && this.state.cur_msg != "" && this.state.cur_msg !="\n"){
-                                                      this.state.database.addChat({"from":this.state.name,"text":this.state.cur_msg,"time":new Date()});
+                                                      this.state.database.addChat({"from":this.state.name,"text":this.state.cur_msg,"color":this.state.color,
+                                                          "text_color":this.state.text_color,"time":new Date()});
                                                       evt.target.value = "";
                                                   }
                                               }}
@@ -113,6 +122,23 @@ class ChatRoom extends React.Component {
                                 />
                             </Form.Group>
                         </Form>
+                    <Dropdown>
+                        <Dropdown.Toggle variant={this.state.color} text={this.state.text_color}>
+                            Chat Color
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={()=>this.setChatColor('info','white')}>Blue</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>this.setChatColor('light','dark')}>White</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>this.setChatColor('dark','white')}>Black</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>this.setChatColor('primary','white')}>Dark Blue</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>this.setChatColor('secondary','white')}>Gray</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>this.setChatColor('success','white')}>Green</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>this.setChatColor('danger','white')}>Red</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>this.setChatColor('warning','white')}>Yellow</Dropdown.Item>
+                        </Dropdown.Menu>
+
+                    </Dropdown>
+
 
 
                 </Container>

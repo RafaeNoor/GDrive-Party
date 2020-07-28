@@ -24,6 +24,7 @@ class PartyRoom extends React.Component {
             'is_join': props.is_join || false,
             'name': props.name,
             'add_url':'',
+            'play_mode':'pause',
         };
 
         console.log(`IS JOIN ${this.state.is_join}`);
@@ -35,7 +36,7 @@ class PartyRoom extends React.Component {
             this.state.database.createRoom({
                 "url": this.state.url, "title": this.state.title,
                 "mode": "pause", "time": 0.000,
-                "chats":[{"from":"GDrive-Party!","text":"Welcome to GDrive Party!","title": this.state.title}],
+                "chats":[{"color":"info","text_color":"white","from":"GDrive-Party!","text":"Welcome to GDrive Party!","title": this.state.title}],
                 "video_list": [this.state.url],
             }).then(ref => {
                 this.state.room_id = ref.id;
@@ -44,7 +45,19 @@ class PartyRoom extends React.Component {
                     console.log("Current data: ", doc.data());
                 })
                 this.setState({'room_id':ref.id});
+
+                    ref.onSnapshot(doc => {
+                        let data = doc.data();
+
+                        if (data != undefined) {
+                            if (data['mode'] != this.state.mode) {
+                                this.setState({"play_mode": data['mode']})
+                            }
+                        }
+                    })
             })
+
+
         } else {
             console.log('fetching room info')
             this.state.database.getRef(this.state.room_id).then(ref => {
@@ -54,6 +67,8 @@ class PartyRoom extends React.Component {
                     this.setState({'room_id':ref.id, url: doc.data['url'],title:doc.data['title']});
                 })
             })
+
+
         }
 
     }
@@ -97,7 +112,12 @@ class PartyRoom extends React.Component {
                         <h1>{this.state.title}</h1>
                     </Row>
                     <Row >
+                        <Col>
                         Room-ID: {this.state.room_id}
+                        </Col>
+                        <Col>
+                            {this.state.play_mode.toUpperCase()}
+                        </Col>
                     </Row>
                     <Row >
                         <Col md={'auto'}>

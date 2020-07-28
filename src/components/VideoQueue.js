@@ -39,7 +39,7 @@ class VideoQueue extends React.Component {
                         this.setState({"current": idx});
                         this.state.changeVideo(vid);
                     }
-                }} >{vid}</ListGroup.Item>);
+                }} >{vid.toString().substring(0,50)}</ListGroup.Item>);
             } else {
                 item = (<ListGroup.Item as={"li"} variant={"light"} text={"dark"}  onClick={()=>{
                     if(!this.state.is_join) {
@@ -47,7 +47,7 @@ class VideoQueue extends React.Component {
                         this.state.changeVideo(vid);
                     }
 
-                }}>{vid}</ListGroup.Item>);
+                }}>{vid.toString().substring(0,50)}</ListGroup.Item>);
             }
 
             items.push(item);

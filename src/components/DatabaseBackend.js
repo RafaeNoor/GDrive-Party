@@ -55,7 +55,6 @@ class DatabaseBackend {
 
     async addVideo(vid){
         await this.state.ref.update({"video_list":firebase_obj.firebase.firestore.FieldValue.arrayUnion(vid)});
-
     }
 
 }
